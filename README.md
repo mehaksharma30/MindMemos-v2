@@ -24,7 +24,7 @@
 
 ---
 
-# Grading Rubric (100 points)
+# Grading Rubric (100 points)(approved by Cheng)
 
 1. **Rubric Submission (5 points)**
 
