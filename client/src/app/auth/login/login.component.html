@@ -1,0 +1,64 @@
+<div class="login-container">
+  <div class="login-card">
+    <h1>Welcome to MindMemos</h1>
+    <p class="subtitle">Peer-support mental health journaling</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="username">Username or Email</label>
+        <input
+          type="text"
+          id="username"
+          formControlName="username"
+          class="form-control"
+          [class.invalid]="username?.invalid && username?.touched"
+          placeholder="Enter your username or email"
+        />
+        <div class="error-message" *ngIf="username?.invalid && username?.touched">
+          <span *ngIf="username?.errors?.['required']">Username is required</span>
+          <span *ngIf="username?.errors?.['minlength']">Username must be at least 3 characters</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="form-control"
+          [class.invalid]="password?.invalid && password?.touched"
+          placeholder="Enter your password"
+        />
+        <div class="error-message" *ngIf="password?.invalid && password?.touched">
+          <span *ngIf="password?.errors?.['required']">Password is required</span>
+          <span *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage()">
+        {{ errorMessage() }}
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="isLoading()"
+      >
+        <span *ngIf="!isLoading()">Login</span>
+        <span *ngIf="isLoading()">Logging in...</span>
+      </button>
+    </form>
+
+    <div class="auth-links">
+      <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+    </div>
+
+    <div class="disclaimer">
+      <p><strong>Disclaimer:</strong> MindMemos is a peer-support tool and does not replace professional mental health care.</p>
+    </div>
+  </div>
+</div>
+
+
+

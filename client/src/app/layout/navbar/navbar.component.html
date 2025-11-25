@@ -1,0 +1,43 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <div class="navbar-brand">
+      <a routerLink="/feed" class="brand-link">
+        <h2>MindMemos</h2>
+      </a>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="navbar-menu" [class.active]="isMenuOpen()">
+      <ul class="navbar-nav">
+        <li><a routerLink="/feed" routerLinkActive="active">Feed</a></li>
+        <li><a routerLink="/posts/create" routerLinkActive="active">New Post</a></li>
+        <li><a routerLink="/messages" routerLinkActive="active">Messages</a></li>
+        <li><a routerLink="/search" routerLinkActive="active">Search</a></li>
+        <li><a routerLink="/creative" routerLinkActive="active">Guided Journaling</a></li>
+      </ul>
+
+      <div class="navbar-user" *ngIf="isAuthenticated">
+        <div class="user-info">
+          <span class="username">{{ username }}</span>
+          <span class="tokens">Tokens: {{ tokens }}</span>
+        </div>
+        <a [routerLink]="['/users', currentUserId]" class="profile-link">Profile</a>
+        <button class="btn-logout" (click)="logout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="disclaimer-banner" *ngIf="isAuthenticated">
+  <p>
+    <strong>Disclaimer:</strong> MindMemos is a peer-support tool and does not replace professional mental health care.
+  </p>
+</div>
+
+
+
